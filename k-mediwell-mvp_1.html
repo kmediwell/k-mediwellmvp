@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-MediWell MVP | 전통을 수출로, 치유를 산업으로</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0d12;
+  --ink-mid:#2a2f3a;
+  --ink-muted:#6b7280;
+  --paper:#fdfcf8;
+  --paper-warm:#f5f2eb;
+  --paper-mid:#e8e4da;
+  --jade:#1a6b5a;
+  --jade-light:#e6f4ef;
+  --jade-mid:#2d8c72;
+  --jade-dark:#0d4035;
+  --gold:#b8902a;
+  --gold-light:#fdf6e3;
+  --gold-mid:#d4a53b;
+  --crimson:#8b1a2f;
+  --slate:#1e2d4a;
+  --serif:'Noto Serif KR','Playfair Display',Georgia,serif;
+  --display:'Playfair Display','Noto Serif KR',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden}
+
+/* ── COVER ── */
+.cover{
+  min-height:100vh;
+  background:linear-gradient(160deg,#050d0a 0%,#0d2d26 45%,#1a1a0a 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cover-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 40%,rgba(26,107,90,.25) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 60% at 75% 60%,rgba(184,144,42,.12) 0%,transparent 70%);
+}
+.cover-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.cover-badge{
+  position:relative;z-index:2;
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(26,107,90,.2);border:1px solid rgba(45,140,114,.4);
+  color:#7dd3bd;font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:8px 20px;border-radius:40px;
+  margin-bottom:40px;
+}
+.cover-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--jade-mid);animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.cover-kicker{
+  position:relative;z-index:2;
+  font-family:var(--sans);font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.4);letter-spacing:.5px;margin-bottom:20px;
+}
+.cover-h1{
+  position:relative;z-index:2;
+  font-family:var(--display);font-size:clamp(42px,7vw,88px);
+  font-weight:900;line-height:1.0;letter-spacing:-2px;
+  color:#fff;margin-bottom:8px;
+}
+.cover-h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,#7dd3bd,var(--gold-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.cover-h2{
+  position:relative;z-index:2;
+  font-family:var(--serif);font-size:clamp(18px,2.5vw,28px);
+  font-weight:300;color:rgba(255,255,255,.55);
+  margin-bottom:52px;line-height:1.5;
+}
+.cover-stats{
+  position:relative;z-index:2;
+  display:flex;gap:0;border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;overflow:hidden;margin-bottom:52px;
+  background:rgba(255,255,255,.03);backdrop-filter:blur(12px);
+}
+.cs{
+  padding:24px 36px;border-right:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+.cs:last-child{border-right:none}
+.cs-n{
+  font-family:var(--display);font-size:36px;font-weight:700;
+  color:var(--jade-mid);line-height:1;margin-bottom:6px;
+}
+.cs-l{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.3px}
+.cover-quote{
+  position:relative;z-index:2;
+  font-family:var(--serif);font-size:17px;font-style:italic;
+  color:rgba(255,255,255,.5);max-width:580px;line-height:1.8;
+  border-top:1px solid rgba(255,255,255,.08);padding-top:32px;
+}
+.cover-quote strong{color:var(--gold-mid);font-style:normal}
+
+/* ── NAV ── */
+.sticky-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(253,252,248,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--paper-mid);
+  padding:0 60px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink)}
+.nav-brand span{color:var(--jade)}
+.nav-links{display:flex;gap:0}
+.nl{
+  padding:0 18px;height:60px;display:flex;align-items:center;
+  font-size:13px;font-weight:500;color:var(--ink-muted);
+  text-decoration:none;border-bottom:2px solid transparent;
+  transition:all .2s;cursor:pointer;
+}
+.nl:hover,.nl.active{color:var(--jade);border-bottom-color:var(--jade)}
+.nav-print{
+  padding:8px 20px;background:var(--jade);color:#fff;
+  border:none;border-radius:7px;font-size:13px;font-weight:600;
+  cursor:pointer;transition:background .2s;
+}
+.nav-print:hover{background:var(--jade-mid)}
+
+/* ── SECTIONS ── */
+section{padding:100px 120px}
+.sec-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--jade);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--jade-light)}
+.sec-h2{
+  font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);
+  font-weight:700;line-height:1.15;letter-spacing:-1px;
+  color:var(--ink);margin-bottom:18px;
+}
+.sec-lead{
+  font-size:17px;color:var(--ink-muted);line-height:1.8;
+  max-width:680px;margin-bottom:60px;
+}
+.accent-bar{
+  width:56px;height:4px;
+  background:linear-gradient(90deg,var(--jade),var(--gold-mid));
+  border-radius:2px;margin-bottom:24px;
+}
+
+/* ── PROBLEM ── */
+#problem{background:var(--paper)}
+.problem-split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.prob-card{
+  padding:36px;border-radius:16px;
+  background:linear-gradient(135deg,#fdf8f8,#fef5f5);
+  border:1px solid rgba(139,26,47,.1);
+  position:relative;overflow:hidden;
+}
+.prob-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--crimson),rgba(139,26,47,.3));
+}
+.prob-num{
+  font-family:var(--display);font-size:56px;font-weight:900;
+  color:rgba(139,26,47,.08);line-height:1;margin-bottom:-12px;
+}
+.prob-title{
+  font-family:var(--serif);font-size:19px;font-weight:700;
+  color:var(--crimson);margin-bottom:12px;
+}
+.prob-desc{font-size:14px;color:var(--ink-mid);line-height:1.75}
+.prob-stat{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(139,26,47,.06);border:1px solid rgba(139,26,47,.12);
+  border-radius:20px;padding:4px 14px;
+  font-size:12px;font-weight:700;color:var(--crimson);
+  margin-top:14px;
+}
+
+/* ── SOLUTION ── */
+#solution{background:var(--jade-dark);color:#fff}
+#solution .sec-label{color:var(--gold-mid)}
+#solution .sec-label::after{background:rgba(212,165,59,.2)}
+#solution .sec-h2{color:#fff}
+#solution .sec-lead{color:rgba(255,255,255,.55)}
+.sol-flow{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;
+}
+.sol-step{
+  padding:36px 28px;
+  border-right:1px solid rgba(255,255,255,.08);
+  position:relative;
+}
+.sol-step:last-child{border-right:none}
+.sol-step-n{
+  font-family:var(--display);font-size:52px;font-weight:900;
+  color:rgba(255,255,255,.05);line-height:1;margin-bottom:-8px;
+}
+.sol-icon{font-size:32px;margin-bottom:16px}
+.sol-step-title{
+  font-family:var(--serif);font-size:17px;font-weight:700;
+  color:#fff;margin-bottom:10px;
+}
+.sol-step-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+.sol-arrow{
+  position:absolute;top:50%;right:-14px;transform:translateY(-50%);
+  width:28px;height:28px;background:var(--jade);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:12px;z-index:2;
+}
+.sol-step:last-child .sol-arrow{display:none}
+
+/* ── TARGET ── */
+#target{background:var(--paper-warm)}
+.target-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:var(--paper);border:1px solid var(--paper-mid);
+  border-radius:18px;padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(26,107,90,.1)}
+.tcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+}
+.tcard.t1::before{background:linear-gradient(90deg,var(--jade),var(--jade-mid))}
+.tcard.t2::before{background:linear-gradient(90deg,var(--gold),var(--gold-mid))}
+.tcard.t3::before{background:linear-gradient(90deg,var(--slate),#3a5a8a)}
+.tcard-flag{font-size:40px;margin-bottom:16px}
+.tcard-num{
+  font-family:var(--display);font-size:44px;font-weight:700;
+  color:var(--jade);line-height:1;margin-bottom:6px;
+}
+.tcard.t2 .tcard-num{color:var(--gold)}
+.tcard.t3 .tcard-num{color:var(--slate)}
+.tcard-label{font-size:12px;color:var(--ink-muted);margin-bottom:18px;font-weight:600;letter-spacing:.3px}
+.tcard-h{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.tcard-desc{font-size:13px;color:var(--ink-muted);line-height:1.7}
+.tcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tg{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;
+}
+.tg.jade{background:var(--jade-light);color:var(--jade)}
+.tg.gold{background:var(--gold-light);color:var(--gold)}
+.tg.slate{background:rgba(30,45,74,.06);color:var(--slate)}
+
+/* ── MVP FEATURES ── */
+#mvp{background:var(--paper)}
+.mvp-phases{display:flex;flex-direction:column;gap:0}
+.phase{
+  display:grid;grid-template-columns:200px 60px 1fr;
+  align-items:start;
+}
+.phase-timeline{
+  padding:36px 0;text-align:right;padding-right:0;
+}
+.phase-tag{
+  display:inline-block;
+  background:var(--jade);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;padding:5px 14px;border-radius:4px;
+  margin-bottom:8px;
+}
+.phase-period{font-size:12px;color:var(--ink-muted);font-weight:500}
+.phase-spine{
+  display:flex;flex-direction:column;align-items:center;
+  padding-top:40px;
+}
+.phase-dot{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--jade);flex-shrink:0;
+  box-shadow:0 0 0 5px var(--jade-light);
+}
+.phase-line{
+  width:2px;flex:1;
+  background:linear-gradient(to bottom,var(--jade-light),var(--paper-mid));
+  min-height:60px;margin-top:8px;
+}
+.phase:last-child .phase-line{display:none}
+.phase-content{padding:28px 0 60px 40px}
+.phase-h{
+  font-family:var(--serif);font-size:22px;font-weight:700;
+  color:var(--ink);margin-bottom:12px;
+}
+.phase-desc{font-size:14px;color:var(--ink-muted);line-height:1.75;margin-bottom:20px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feat{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--paper-warm);border:1px solid var(--paper-mid);
+  border-radius:12px;padding:16px;
+}
+.feat-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--jade-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.feat-text h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.feat-text p{font-size:12px;color:var(--ink-muted);line-height:1.55}
+
+/* ── REVENUE ── */
+#revenue{background:var(--ink);color:#fff}
+#revenue .sec-label{color:var(--gold-mid)}
+#revenue .sec-label::after{background:rgba(212,165,59,.2)}
+#revenue .sec-h2{color:#fff}
+#revenue .sec-lead{color:rgba(255,255,255,.5)}
+.rev-streams{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.rev-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:28px 22px;
+  position:relative;overflow:hidden;
+}
+.rev-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--jade),var(--gold-mid));
+}
+.rev-icon{font-size:28px;margin-bottom:14px}
+.rev-title{
+  font-family:var(--serif);font-size:16px;font-weight:700;
+  color:#fff;margin-bottom:8px;
+}
+.rev-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:14px}
+.rev-rate{
+  font-family:var(--display);font-size:26px;font-weight:700;
+  color:var(--jade-mid);
+}
+.rev-rate-l{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.journey-strip{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:36px;
+}
+.journey-title{
+  font-family:var(--serif);font-size:20px;font-weight:700;
+  color:#fff;margin-bottom:28px;
+}
+.journey-flow{display:flex;align-items:center;gap:0;overflow-x:auto}
+.jf-step{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;flex:1;min-width:120px;
+}
+.jf-node{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--jade-dark),var(--jade));
+  border:2px solid var(--jade-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:12px;
+}
+.jf-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);line-height:1.4}
+.jf-arrow{
+  font-size:20px;color:var(--gold-mid);opacity:.5;
+  padding:0 8px;flex-shrink:0;margin-bottom:24px;
+}
+
+/* ── GLOCAL ── */
+#glocal{background:var(--paper-warm)}
+.glocal-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.glocal-visual{
+  background:linear-gradient(145deg,var(--jade-dark),#1a3d30);
+  border-radius:20px;padding:44px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.gv-row{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px 18px;
+}
+.gv-flag{font-size:22px;flex-shrink:0}
+.gv-info{flex:1}
+.gv-country{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.gv-role{font-size:11px;color:rgba(255,255,255,.45)}
+.gv-status{
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;
+}
+.st-active{background:rgba(45,140,114,.2);color:var(--jade-mid)}
+.st-ready{background:rgba(184,144,42,.15);color:var(--gold-mid)}
+.st-plan{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4)}
+.glocal-content{}
+.glocal-points{display:flex;flex-direction:column;gap:20px}
+.gp{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;background:var(--paper);
+  border:1px solid var(--paper-mid);border-radius:14px;
+}
+.gp-icon{
+  width:42px;height:42px;border-radius:11px;
+  background:var(--jade-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.gp-text h4{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.gp-text p{font-size:13px;color:var(--ink-muted);line-height:1.65}
+
+/* ── DIGITAL NOMAD ── */
+#nomad{background:var(--paper)}
+.nomad-vision{
+  background:linear-gradient(160deg,#050d0a,#0d2d26);
+  border-radius:24px;padding:64px;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.nv-left{}
+.nv-tag{
+  display:inline-block;
+  background:rgba(184,144,42,.15);border:1px solid rgba(184,144,42,.3);
+  color:var(--gold-mid);font-size:11px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;padding:5px 16px;border-radius:4px;
+  margin-bottom:20px;
+}
+.nv-h{
+  font-family:var(--serif);font-size:34px;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:16px;
+}
+.nv-h em{font-style:italic;color:var(--jade-mid)}
+.nv-desc{font-size:15px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:28px}
+.nv-quote{
+  font-family:var(--serif);font-size:16px;font-style:italic;
+  color:rgba(255,255,255,.4);border-left:3px solid var(--gold-mid);
+  padding-left:18px;line-height:1.7;
+}
+.nv-right{display:flex;flex-direction:column;gap:14px}
+.nv-step{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:16px 20px;
+}
+.nv-step-n{
+  font-family:var(--display);font-size:24px;font-weight:700;
+  color:var(--jade-mid);width:36px;flex-shrink:0;
+}
+.nv-step-text h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.nv-step-text p{font-size:12px;color:rgba(255,255,255,.4)}
+
+/* ── KPI ── */
+#kpi{background:var(--jade-dark)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.kpi-card{
+  text-align:center;padding:36px 20px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+}
+.kpi-n{
+  font-family:var(--display);font-size:48px;font-weight:700;
+  color:var(--jade-mid);line-height:1;margin-bottom:8px;
+}
+
+/* ── BUDGET ── */
+#budget{background:var(--paper)}
+.budget-total{
+  display:flex;align-items:center;gap:32px;
+  background:linear-gradient(135deg,var(--jade-dark),#1a3d30);
+  border-radius:20px;padding:44px 52px;margin-bottom:40px;
+  color:#fff;
+}
+.bt-amount{
+  font-family:var(--display);font-size:64px;font-weight:900;
+  color:var(--gold-mid);line-height:1;flex-shrink:0;
+}
+.bt-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:6px}
+.bt-divider{width:1px;height:80px;background:rgba(255,255,255,.12);flex-shrink:0}
+.bt-desc{font-family:var(--serif);font-size:17px;color:rgba(255,255,255,.75);line-height:1.7}
+.bt-desc strong{color:#fff}
+.budget-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+.budget-table thead tr{background:var(--jade);color:#fff}
+.budget-table thead th{padding:14px 20px;font-size:13px;font-weight:700;text-align:left;letter-spacing:.3px}
+.budget-table tbody tr{border-bottom:1px solid var(--paper-mid);transition:background .15s}
+.budget-table tbody tr:hover{background:var(--paper-warm)}
+.budget-table td{padding:16px 20px;font-size:13px;color:var(--ink-mid);vertical-align:top}
+.budget-table td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.budget-table td.amount{font-family:var(--display);font-size:15px;font-weight:700;color:var(--jade);white-space:nowrap}
+.budget-table td.pct{font-size:12px;color:var(--ink-muted);white-space:nowrap}
+.budget-table tfoot tr{background:var(--paper-warm)}
+.budget-table tfoot td{padding:16px 20px;font-weight:700;color:var(--ink)}
+.budget-table tfoot td.amount{font-family:var(--display);font-size:18px;color:var(--jade);font-weight:900}
+.cat-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:4px}
+.cat-edu{background:var(--jade-light);color:var(--jade)}
+.cat-tech{background:rgba(30,45,74,.08);color:var(--slate)}
+.cat-mkt{background:var(--gold-light);color:var(--gold)}
+.cat-ops{background:rgba(139,26,47,.06);color:var(--crimson)}
+.budget-note{
+  background:var(--paper-warm);border:1px solid var(--paper-mid);
+  border-left:4px solid var(--gold-mid);
+  border-radius:0 12px 12px 0;padding:20px 24px;
+  font-size:13px;color:var(--ink-mid);line-height:1.75;
+}
+.budget-note strong{color:var(--gold)}
+
+/* ── GLOCAL UNIV ── */
+#glocal-univ{background:var(--jade-dark);color:#fff}
+#glocal-univ .sec-label{color:var(--gold-mid)}
+#glocal-univ .sec-label::after{background:rgba(212,165,59,.2)}
+#glocal-univ .sec-h2{color:#fff}
+#glocal-univ .sec-lead{color:rgba(255,255,255,.55)}
+.univ-strategy{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.us-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;
+}
+.us-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid))}
+.us-icon{font-size:32px;margin-bottom:14px}
+.us-title{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff;margin-bottom:10px}
+.us-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:16px}
+.us-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.us-list li{font-size:12px;color:rgba(255,255,255,.65);padding-left:16px;position:relative}
+.us-list li::before{content:'→';position:absolute;left:0;color:var(--jade-mid)}
+.univ-collab{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:36px;
+}
+.uc-title{font-family:var(--serif);font-size:20px;font-weight:700;color:#fff;margin-bottom:24px}
+.uc-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.uc-flow::before{
+  content:'';position:absolute;top:28px;left:36px;right:36px;height:2px;
+  background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid));z-index:0;
+}
+.uc-step{text-align:center;position:relative;z-index:1}
+.uc-node{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--jade-dark),var(--jade));
+  border:2px solid var(--jade-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin:0 auto 14px;
+}
+.uc-label{font-size:11px;font-weight:600;color:rgba(255,255,255,.65);line-height:1.5}
+
+/* ── FEASIBILITY ── */
+#feasibility{background:var(--paper-warm)}
+.feas-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.feas-card{
+  background:var(--paper);border:1px solid var(--paper-mid);
+  border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;
+}
+.feas-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--jade),var(--jade-mid))}
+.feas-badge{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;padding:4px 12px;border-radius:4px;
+  background:var(--jade-light);color:var(--jade);margin-bottom:14px;
+}
+.feas-h{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);margin-bottom:12px}
+.feas-desc{font-size:13px;color:var(--ink-muted);line-height:1.75;margin-bottom:16px}
+.feas-proof{display:flex;flex-direction:column;gap:8px}
+.fp-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--ink-mid);
+}
+.fp-item::before{content:'✓';color:var(--jade);font-weight:700;flex-shrink:0;margin-top:1px}
+.risk-table{width:100%;border-collapse:collapse}
+.risk-table thead tr{background:var(--paper-warm)}
+.risk-table thead th{padding:12px 18px;font-size:12px;font-weight:700;color:var(--ink-muted);text-align:left;border-bottom:2px solid var(--paper-mid)}
+.risk-table tbody tr{border-bottom:1px solid var(--paper-mid)}
+.risk-table td{padding:14px 18px;font-size:13px;color:var(--ink-mid);vertical-align:top}
+.risk-table td:first-child{font-weight:700;color:var(--ink)}
+.risk-level{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.rl-low{background:var(--jade-light);color:var(--jade)}
+.rl-mid{background:var(--gold-light);color:var(--gold)}
+.rl-high{background:rgba(139,26,47,.08);color:var(--crimson)}
+.kpi-unit{font-size:22px}
+.kpi-label{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
+.kpi-phase-tag{
+  display:inline-block;margin-top:10px;
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;
+  background:rgba(45,140,114,.2);color:var(--jade-mid);
+}
+
+/* ── CLOSING ── */
+#closing{
+  background:var(--paper-warm);
+  text-align:center;padding:120px;
+}
+.closing-h{
+  font-family:var(--display);font-size:clamp(28px,4vw,52px);
+  font-weight:900;font-style:italic;color:var(--ink);
+  margin-bottom:20px;line-height:1.1;
+}
+.closing-h em{color:var(--jade)}
+.closing-sub{
+  font-size:17px;color:var(--ink-muted);max-width:560px;
+  margin:0 auto 48px;line-height:1.75;
+}
+.closing-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ctag{
+  padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;
+  border:1.5px solid var(--paper-mid);color:var(--ink-mid);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.35);
+  padding:32px 120px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;
+}
+footer strong{color:rgba(255,255,255,.7)}
+
+/* ── PRINT ── */
+@media print{
+  .sticky-nav,.nav-print{display:none}
+  section{padding:60px 80px}
+  .cover{min-height:auto;padding:60px}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  section{padding:80px 60px}
+  .sol-flow,.target-grid,.rev-streams,.kpi-grid{grid-template-columns:1fr 1fr}
+  .problem-split,.glocal-grid,.nomad-vision{grid-template-columns:1fr}
+  .phase{grid-template-columns:1fr}
+  .phase-timeline,.phase-spine{display:none}
+  .phase-content{padding:0 0 40px}
+}
+@media(max-width:768px){
+  section{padding:60px 24px}
+  .cover{padding:60px 24px}
+  .cover-stats{flex-direction:column}
+  .cs{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .sol-flow,.target-grid,.rev-streams,.kpi-grid,.feature-grid{grid-template-columns:1fr}
+  .sticky-nav{padding:0 20px}
+  .nl{display:none}
+  footer{flex-direction:column;gap:10px;padding:28px 24px}
+  #closing{padding:80px 24px}
+  .nomad-vision{padding:40px 28px}
+}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-badge">MVP 기획서 · 모두의 창업 1라운드 선정작</div>
+  <p class="cover-kicker">국립공주대학교 스마트의료웰니스관광 대학원 · 이용근 교수팀</p>
+  <h1 class="cover-h1">전통을 수출로<br><em>치유를 산업으로</em></h1>
+  <p class="cover-h2">K-컬처 유학생 30만 명이 글로벌 셀러가 되는 플랫폼<br>웹툰 · 전자북 · 치유관광을 하나로 잇는 K-MediWell</p>
+  <div class="cover-stats">
+    <div class="cs"><div class="cs-n">30만</div><div class="cs-l">한국 체류 외국인 유학생</div></div>
+    <div class="cs"><div class="cs-n">1.5억</div><div class="cs-l">전세계 K-컬처 팬</div></div>
+    <div class="cs"><div class="cs-n">170개</div><div class="cs-l">대사관 연계 배포채널</div></div>
+    <div class="cs"><div class="cs-n">4.0×</div><div class="cs-l">예상 투자 회수 배율</div></div>
+  </div>
+  <p class="cover-quote">
+    "전통은 언어의 벽에 갇혀 있을 때 유물이 되지만,<br>
+    디지털 플랫폼을 탈 때 비로소 <strong>전 세계의 치유 에너지</strong>가 됩니다."
+  </p>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-brand">K-Medi<span>Well</span> MVP</div>
+  <div class="nav-links">
+    <span class="nl" onclick="scrollTo('#problem')">문제</span>
+    <span class="nl" onclick="scrollTo('#solution')">해결책</span>
+    <span class="nl" onclick="scrollTo('#target')">타겟</span>
+    <span class="nl" onclick="scrollTo('#mvp')">MVP 로드맵</span>
+    <span class="nl" onclick="scrollTo('#budget')">자금계획</span>
+    <span class="nl" onclick="scrollTo('#glocal-univ')">글로컬대학</span>
+    <span class="nl" onclick="scrollTo('#feasibility')">사업화가능성</span>
+    <span class="nl" onclick="scrollTo('#revenue')">수익모델</span>
+    <span class="nl" onclick="scrollTo('#kpi')">KPI</span>
+  </div>
+  <button class="nav-print" onclick="window.print()">🖨 PDF 저장</button>
+</nav>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="sec-label reveal">Problem — 우리가 해결하는 문제</div>
+  <h2 class="sec-h2 reveal">한국 관광의 역설 —<br>보이는 곳만 넘치고, 깊이는 사라진다</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">한국을 찾는 외국인은 늘었지만 그들이 경험하는 한국은 얕아졌습니다. 서울 3대 명소, 치맥, K-팝 공연. 그 이면의 한국 — 수백 년 전통의 치유 지식, 지역 고유 문화, 장인의 철학은 언어의 벽 너머에 잠들어 있습니다.</p>
+  <div class="problem-split reveal">
+    <div class="prob-card">
+      <div class="prob-num">01</div>
+      <div class="prob-title">관광 쏠림 현상</div>
+      <p class="prob-desc">외국인 관광객의 대다수가 수도권·유명 관광지에 집중되며 지역 전통문화는 소멸 위기에 처해 있습니다. 지역만의 고유한 치유 지식, 전통 공예, 자연 자원이 콘텐츠화되지 못한 채 사라지고 있습니다.</p>
+      <div class="prob-stat">수도권 집중도 78% 이상</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">02</div>
+      <div class="prob-title">전통 지식인의 고립</div>
+      <p class="prob-desc">국악인·한의사·무속 예술가·전통 장인 등 수십 년의 지식 보유자들은 글로벌 저자가 될 경로가 없습니다. 영어·일어·중국어로 번역되지 않은 채 사라질 위기에 처한 K-지식은 수천 가지에 달합니다.</p>
+      <div class="prob-stat">글로벌 유통 전통 콘텐츠 1% 미만</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">03</div>
+      <div class="prob-title">유학생 자원의 미활용</div>
+      <p class="prob-desc">한국 체류 외국인 유학생 30만 명은 한국어·한국문화·모국 네트워크를 동시에 보유한 최고의 문화 전달자입니다. 그러나 이들을 콘텐츠 창작자·글로벌 셀러로 연결하는 시스템이 없습니다.</p>
+      <div class="prob-stat">유학생 한국문화 창작 수익화율 &lt;1%</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">04</div>
+      <div class="prob-title">관광수지 적자 구조</div>
+      <p class="prob-desc">한국의 연간 관광수지 적자는 수십조 원에 달합니다. 저부가가치 숙박·쇼핑 중심 구조를 고부가가치 콘텐츠·치유·체험 중심으로 전환하지 못하면 이 구조는 고착됩니다.</p>
+      <div class="prob-stat">연간 관광수지 적자 수십조 원</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="sec-label reveal">Solution — K-MediWell 플랫폼</div>
+  <h2 class="sec-h2 reveal">유학생이 저자가 되고<br>전통이 글로벌 상품이 된다</h2>
+  <div class="accent-bar reveal" style="background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid))"></div>
+  <p class="sec-lead reveal">K-MediWell은 한국 체류 유학생을 글로벌 K-문화 셀러로 성장시키는 올인원 플랫폼입니다. 웹툰·전자북 제작부터 치유관광상품 판매, 디지털 노마드 비자 정착까지 하나의 여정으로 설계합니다.</p>
+  <div class="sol-flow reveal">
+    <div class="sol-step">
+      <div class="sol-step-n">01</div>
+      <div class="sol-icon">🎓</div>
+      <div class="sol-step-title">K-문화 체험 교육</div>
+      <div class="sol-step-desc">유학생이 전통 치유, 지역 문화, 한국 철학을 직접 체험·학습하며 자신만의 스토리를 발굴합니다. 웹툰·전자북 입문 워크숍 병행.</div>
+      <div class="sol-arrow">›</div>
+    </div>
+    <div class="sol-step">
+      <div class="sol-step-n">02</div>
+      <div class="sol-icon">📖</div>
+      <div class="sol-step-title">웹툰·전자북 출간</div>
+      <div class="sol-step-desc">AI 번역·편집으로 80% 비용 절감. 영어·일어·중국어 등 6개 언어 동시 출판. 1,400개 글로벌 플랫폼 연결.</div>
+      <div class="sol-arrow">›</div>
+    </div>
+    <div class="sol-step">
+      <div class="sol-step-n">03</div>
+      <div class="sol-icon">🌏</div>
+      <div class="sol-step-title">귀국 후 글로벌 셀러</div>
+      <div class="sol-step-desc">본국 네트워크를 활용해 자신의 책을 판매하고, 한국 치유관광상품·K-문화 콘텐츠를 커미션 기반으로 판매합니다.</div>
+      <div class="sol-arrow">›</div>
+    </div>
+    <div class="sol-step">
+      <div class="sol-step-n">04</div>
+      <div class="sol-icon">🏡</div>
+      <div class="sol-step-title">디지털 노마드 정착</div>
+      <div class="sol-step-desc">충분한 수익 창출 후 디지털 노마드 비자로 한국에서 지속 활동. K-MediWell 글로벌 허브 운영자로 성장합니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET -->
+<section id="target">
+  <div class="sec-label reveal">Target — 고객 세그먼트</div>
+  <h2 class="sec-h2 reveal">세 가지 고객이 하나의 생태계를 만든다</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">K-MediWell은 콘텐츠를 만드는 사람, 지식을 공유하는 사람, 그 콘텐츠를 소비하는 사람을 하나의 플랫폼으로 연결합니다.</p>
+  <div class="target-grid">
+    <div class="tcard t1 reveal">
+      <div class="tcard-flag">🎓</div>
+      <div class="tcard-num">30만</div>
+      <div class="tcard-label">PRIMARY TARGET · 핵심 고객</div>
+      <div class="tcard-h">한국 체류 외국인 유학생</div>
+      <p class="tcard-desc">한국어 능력, 모국 네트워크, 문화적 감수성을 동시에 보유한 최고의 K-문화 전달자. 웹툰·전자북 창작 교육 → 글로벌 셀러로 성장시킵니다.</p>
+      <div class="tcard-tags">
+        <span class="tg jade">콘텐츠 창작자</span>
+        <span class="tg jade">글로벌 셀러</span>
+        <span class="tg jade">문화 대사</span>
+      </div>
+    </div>
+    <div class="tcard t2 reveal">
+      <div class="tcard-flag">🌿</div>
+      <div class="tcard-num">수천명</div>
+      <div class="tcard-label">SECONDARY TARGET · 지식 공급자</div>
+      <div class="tcard-h">한국 전통 지식인</div>
+      <p class="tcard-desc">국악인·한의사·무속 예술가·전통 장인·지역 치유사. 수십 년의 지식을 보유했지만 글로벌 유통 경로가 없었던 분들을 저자로 연결합니다.</p>
+      <div class="tcard-tags">
+        <span class="tg gold">원천 지식 보유자</span>
+        <span class="tg gold">글로벌 저자</span>
+        <span class="tg gold">로열티 수익</span>
+      </div>
+    </div>
+    <div class="tcard t3 reveal">
+      <div class="tcard-flag">✈️</div>
+      <div class="tcard-num">1.5억</div>
+      <div class="tcard-label">TERTIARY TARGET · 최종 소비자</div>
+      <div class="tcard-h">전세계 K-컬처 팬 & 방한 외국인</div>
+      <p class="tcard-desc">K-팝·K-드라마에 열광하지만 그 이면의 전통·철학·치유 세계를 접할 콘텐츠가 없었던 1.5억 K-컬처 팬. 웹툰→전자북→치유관광으로 연결합니다.</p>
+      <div class="tcard-tags">
+        <span class="tg slate">전자북 독자</span>
+        <span class="tg slate">치유관광객</span>
+        <span class="tg slate">K-문화 소비자</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MVP ROADMAP -->
+<section id="mvp">
+  <div class="sec-label reveal">MVP Roadmap — 단계별 실행 계획</div>
+  <h2 class="sec-h2 reveal">3단계로 세계를 연결하다</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">작게 시작해서 검증하고, 빠르게 확장합니다. 각 단계는 이전 단계의 데이터와 사용자로 다음 단계를 추진합니다.</p>
+  <div class="mvp-phases">
+
+    <!-- Phase 1 -->
+    <div class="phase reveal">
+      <div class="phase-timeline">
+        <div class="phase-tag">Phase 1</div>
+        <div class="phase-period">0 — 6개월</div>
+      </div>
+      <div class="phase-spine">
+        <div class="phase-dot"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <h3 class="phase-h">🌱 씨앗 — 파일럿 & 검증</h3>
+        <p class="phase-desc">국립공주대학교 외국인 유학생 50명을 대상으로 K-문화 체험 교육 파일럿 운영. 웹툰·전자북 시제품 3~5종 출간. 플랫폼 MVP 오픈 베타.</p>
+        <div class="feature-grid">
+          <div class="feat"><div class="feat-icon">🎓</div><div class="feat-text"><h4>K-문화 체험 교육 커리큘럼</h4><p>전통 치유·지역 문화·스토리텔링 12주 과정 개발</p></div></div>
+          <div class="feat"><div class="feat-icon">📱</div><div class="feat-text"><h4>웹툰 제작 워크숍</h4><p>유학생이 직접 K-문화 웹툰 제작 — 모국어·한국어 병행</p></div></div>
+          <div class="feat"><div class="feat-icon">🤖</div><div class="feat-text"><h4>AI 번역·편집 파이프라인</h4><p>제작비 80% 절감 · 6개 언어 자동 번역 시스템 구축</p></div></div>
+          <div class="feat"><div class="feat-icon">📚</div><div class="feat-text"><h4>전자북 3종 출간</h4><p>Amazon Kindle·Apple Books 등 글로벌 플랫폼 출시</p></div></div>
+          <div class="feat"><div class="feat-icon">🌐</div><div class="feat-text"><h4>플랫폼 MVP 오픈</h4><p>회원가입·출판 신청·관심목록·실시간 채팅 기본 기능</p></div></div>
+          <div class="feat"><div class="feat-icon">📊</div><div class="feat-text"><h4>데이터 수집 & 검증</h4><p>판매 데이터·사용자 피드백으로 다음 단계 설계</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase reveal">
+      <div class="phase-timeline">
+        <div class="phase-tag" style="background:var(--gold)">Phase 2</div>
+        <div class="phase-period">6 — 18개월</div>
+      </div>
+      <div class="phase-spine">
+        <div class="phase-dot" style="background:var(--gold);box-shadow:0 0 0 5px var(--gold-light)"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <h3 class="phase-h">🌿 성장 — 대사관 연계 & 치유관광 결합</h3>
+        <p class="phase-desc">전국 대학 유학생 500명으로 확장. 170개 한국 대사관·공관 채널 연계 배포 시작. 치유관광상품과 전자북을 묶은 번들 상품 출시. 뉴욕·도쿄·파리 거점 설치.</p>
+        <div class="feature-grid">
+          <div class="feat"><div class="feat-icon">🏛</div><div class="feat-text"><h4>대사관 170개국 공식 배포</h4><p>정부 신뢰도 기반 · API 연동 공식 채널 확보</p></div></div>
+          <div class="feat"><div class="feat-icon">🧠</div><div class="feat-text"><h4>치유관광상품 연계</h4><p>전자북 독자 → 치유관광 패키지 (EEG·산림·한의 체험)</p></div></div>
+          <div class="feat"><div class="feat-icon">🌍</div><div class="feat-text"><h4>글로벌 허브 3개 오픈</h4><p>뉴욕·도쿄·파리 K-MediWell 마스터 파견·운영</p></div></div>
+          <div class="feat"><div class="feat-icon">💰</div><div class="feat-text"><h4>셀러 커미션 시스템</h4><p>귀국 유학생 판매 수익 35% 자동 정산</p></div></div>
+          <div class="feat"><div class="feat-icon">📱</div><div class="feat-text"><h4>모바일 앱 출시</h4><p>iOS·Android · 오프라인 열람·뇌파 리포트 연동</p></div></div>
+          <div class="feat"><div class="feat-icon">🏆</div><div class="feat-text"><h4>K-BEPC 자격 인증 체계</h4><p>글로벌 K-문화 에너지 전문가 인증 · 국제 통용</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase reveal">
+      <div class="phase-timeline">
+        <div class="phase-tag" style="background:var(--slate)">Phase 3</div>
+        <div class="phase-period">18개월 이후</div>
+      </div>
+      <div class="phase-spine">
+        <div class="phase-dot" style="background:var(--slate);box-shadow:0 0 0 5px rgba(30,45,74,.12)"></div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <h3 class="phase-h">🌳 글로벌 — K-힐링 세계 표준</h3>
+        <p class="phase-desc">70개국 1,400개 플랫폼 전면 연결. AI 뇌파 분석 플랫폼 구축. 디지털 노마드 비자 연계 정착 지원. K-힐링을 K-팝·K-푸드에 이은 세 번째 한국 세계 브랜드로 정립.</p>
+        <div class="feature-grid">
+          <div class="feat"><div class="feat-icon">🌐</div><div class="feat-text"><h4>70개국 1,400개 플랫폼 연결</h4><p>Amazon·Apple·Rakuten·Kobo 전체 자동 유통</p></div></div>
+          <div class="feat"><div class="feat-icon">🧬</div><div class="feat-text"><h4>AI 뇌파 분석 플랫폼</h4><p>EEG 기반 치유 효과 AI 측정·개인화 리포트</p></div></div>
+          <div class="feat"><div class="feat-icon">🏠</div><div class="feat-text"><h4>디지털 노마드 정착 지원</h4><p>비자·숙소·커뮤니티 연계 · 한국 장기 체류 생태계</p></div></div>
+          <div class="feat"><div class="feat-icon">🎯</div><div class="feat-text"><h4>K-힐링 세계 표준화</h4><p>WHO 대사 의학 연구 연계 · 국제 학술 공동 연구</p></div></div>
+          <div class="feat"><div class="feat-icon">📡</div><div class="feat-text"><h4>모바일 K-문화 센터</h4><p>이동형 체험관 · 해외 주요 도시 순회 전시·판매</p></div></div>
+          <div class="feat"><div class="feat-icon">💎</div><div class="feat-text"><h4>K-MediWell 브랜드 IPO 준비</h4><p>플랫폼 데이터·콘텐츠·기술 자산 기반 기업 공개</p></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section id="revenue">
+  <div class="sec-label reveal">Revenue Model — 수익 구조</div>
+  <h2 class="sec-h2 reveal">4가지 수익원이<br>복리로 성장한다</h2>
+  <div class="accent-bar reveal" style="background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid))"></div>
+  <p class="sec-lead reveal">단순 출판 플랫폼이 아닙니다. 콘텐츠 → 교육 → 관광 → 정착으로 이어지는 수익 복합 구조가 K-MediWell의 핵심입니다.</p>
+  <div class="rev-streams reveal">
+    <div class="rev-card">
+      <div class="rev-icon">📚</div>
+      <div class="rev-title">웹툰·전자북 판매</div>
+      <p class="rev-desc">글로벌 1,400개 플랫폼 유통. 저자 로열티 35%, 플랫폼 수수료 15%. 언어별 버전 별도 판매.</p>
+      <div class="rev-rate">35%</div>
+      <div class="rev-rate-l">저자 로열티 지급율</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-icon">✈️</div>
+      <div class="rev-title">치유관광상품 커미션</div>
+      <p class="rev-desc">전자북 독자의 한국 치유관광 예약 연계. 세종 금강자연휴양림·EEG 세션·한의 체험 패키지.</p>
+      <div class="rev-rate">20%</div>
+      <div class="rev-rate-l">관광상품 판매 커미션</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-icon">🎓</div>
+      <div class="rev-title">교육 프로그램 수강료</div>
+      <p class="rev-desc">K-문화 체험 교육 12주 과정. 웹툰·전자북 제작 워크숍. K-BEPC 자격 인증 시험.</p>
+      <div class="rev-rate">₩89만</div>
+      <div class="rev-rate-l">1인당 교육 수강료</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-icon">🏆</div>
+      <div class="rev-title">셀러 멤버십 & 인증</div>
+      <p class="rev-desc">글로벌 셀러 프리미엄 멤버십. K-BEPC 인증 갱신. 허브 운영자 가맹 수수료.</p>
+      <div class="rev-rate">$99</div>
+      <div class="rev-rate-l">월 프리미엄 멤버십</div>
+    </div>
+  </div>
+  <div class="journey-strip reveal">
+    <div class="journey-title">📍 유학생 → 글로벌 셀러 수익 여정</div>
+    <div class="journey-flow">
+      <div class="jf-step">
+        <div class="jf-node">🇰🇷</div>
+        <div class="jf-label">한국 체류<br>유학생</div>
+      </div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-step">
+        <div class="jf-node">🎓</div>
+        <div class="jf-label">K-문화<br>체험 교육</div>
+      </div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-step">
+        <div class="jf-node">📖</div>
+        <div class="jf-label">웹툰·전자북<br>출간</div>
+      </div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-step">
+        <div class="jf-node">🌏</div>
+        <div class="jf-label">귀국 후<br>글로벌 판매</div>
+      </div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-step">
+        <div class="jf-node">💰</div>
+        <div class="jf-label">치유관광<br>커미션 판매</div>
+      </div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-step">
+        <div class="jf-node">🏡</div>
+        <div class="jf-label">디지털 노마드<br>한국 정착</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOCAL -->
+<section id="glocal">
+  <div class="sec-label reveal">Glocalization — 글로컬 전략</div>
+  <h2 class="sec-h2 reveal">로컬에서 시작해<br>글로벌로 확산한다</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">유학생은 살아있는 번역 엔진입니다. 그들의 모국어·문화 이해·인적 네트워크가 K-문화를 전 세계에 유통합니다.</p>
+  <div class="glocal-grid">
+    <div class="glocal-visual reveal">
+      <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:20px;letter-spacing:.5px">현재 활성 글로벌 셀러</div>
+      <div class="gv-row"><div class="gv-flag">🇺🇸</div><div class="gv-info"><div class="gv-country">뉴욕 허브 — 북미 총괄</div><div class="gv-role">K-BEPC L3 마스터 2명 파견</div></div><div class="gv-status st-active">Active</div></div>
+      <div class="gv-row"><div class="gv-flag">🇫🇷</div><div class="gv-info"><div class="gv-country">파리 허브 — 유럽 총괄</div><div class="gv-role">유네스코 본부 연계 · 프랑스어권</div></div><div class="gv-status st-active">Active</div></div>
+      <div class="gv-row"><div class="gv-flag">🇯🇵</div><div class="gv-info"><div class="gv-country">도쿄 허브 — 아시아태평양</div><div class="gv-role">Rakuten Kobo 연계 · 일본 4천만 팬</div></div><div class="gv-status st-ready">Ready</div></div>
+      <div class="gv-row"><div class="gv-flag">🇨🇳</div><div class="gv-info"><div class="gv-country">상하이 셀러 네트워크</div><div class="gv-role">중국어 전자북 · WeChat 유통</div></div><div class="gv-status st-plan">Planned</div></div>
+      <div class="gv-row"><div class="gv-flag">🇩🇪</div><div class="gv-info"><div class="gv-country">베를린 셀러 네트워크</div><div class="gv-role">독일어·스페인어 유럽 권역</div></div><div class="gv-status st-plan">Planned</div></div>
+      <div style="margin-top:16px;padding:16px 18px;background:rgba(184,144,42,.1);border:1px solid rgba(184,144,42,.2);border-radius:10px;font-size:12px;color:var(--gold-mid);font-weight:600">
+        🌏 목표: 3년 내 70개국 글로벌 셀러 네트워크 구축
+      </div>
+    </div>
+    <div class="glocal-content">
+      <div class="glocal-points reveal">
+        <div class="gp">
+          <div class="gp-icon">🔄</div>
+          <div class="gp-text">
+            <h4>Local roots → Glocal translation → Global expansion</h4>
+            <p>한국 전통 지식을 유학생이 모국어로 번역·재해석하고, K-MediWell 플랫폼이 글로벌 1,400개 채널로 유통합니다. 진짜 현지화(localization)가 가능한 유일한 구조입니다.</p>
+          </div>
+        </div>
+        <div class="gp">
+          <div class="gp-icon">🏛</div>
+          <div class="gp-text">
+            <h4>170개 대사관 공식 채널 연계</h4>
+            <p>전세계 한국 대사관·공관의 K-컨텐츠 채널을 공식 배포 파트너로 활용합니다. 정부 신뢰도가 콘텐츠 신뢰도로 전환됩니다.</p>
+          </div>
+        </div>
+        <div class="gp">
+          <div class="gp-icon">💡</div>
+          <div class="gp-text">
+            <h4>디지털 기념품 경제</h4>
+            <p>방한 외국인이 한국에서 경험한 문화를 전자북으로 구매해 귀국 후에도 즐기고 공유합니다. 관광 이후에도 지속되는 K-문화 소비 루프가 생성됩니다.</p>
+          </div>
+        </div>
+        <div class="gp">
+          <div class="gp-icon">🤝</div>
+          <div class="gp-text">
+            <h4>치유관광산업육성법 2026.4.9 시행</h4>
+            <p>K-MediWell은 새 법률의 첫 번째 민간 플랫폼 파트너로 포지셔닝합니다. 정부 지원·인증·지구 지정의 직접 수혜 대상입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL NOMAD -->
+<section id="nomad">
+  <div class="sec-label reveal">Digital Nomad Vision — 최종 목표</div>
+  <h2 class="sec-h2 reveal">한국이 삶의 터전이 되는<br>플랫폼을 만든다</h2>
+  <div class="accent-bar reveal"></div>
+  <div class="nomad-vision reveal">
+    <div class="nv-left">
+      <div class="nv-tag">Ultimate Vision</div>
+      <h3 class="nv-h">K-문화로 돈 벌고<br><em>한국에서 행복하게</em></h3>
+      <p class="nv-desc">K-MediWell의 최종 목표는 단순한 플랫폼이 아닙니다. 전세계 K-문화 셀러들이 한국 전통문화로 충분한 수익을 창출하고, 디지털 노마드 비자로 한국에 정착해 지속적으로 활동하는 새로운 삶의 방식을 설계합니다.</p>
+      <p class="nv-quote">"전통은 수출이 되고, 치유는 산업이 되고,<br>한국은 디지털 노마드의 새로운 성지가 된다."<br><strong style="color:var(--gold-mid);font-style:normal">— K-MediWell Mission Statement</strong></p>
+    </div>
+    <div class="nv-right">
+      <div class="nv-step">
+        <div class="nv-step-n">1</div>
+        <div class="nv-step-text"><h4>K-문화 체험 & 콘텐츠 제작</h4><p>유학 중 웹툰·전자북 출간 · 로열티 수익 시작</p></div>
+      </div>
+      <div class="nv-step">
+        <div class="nv-step-n">2</div>
+        <div class="nv-step-text"><h4>귀국 후 글로벌 셀러 활동</h4><p>모국 네트워크로 책·치유관광상품 판매 · 커미션 누적</p></div>
+      </div>
+      <div class="nv-step">
+        <div class="nv-step-n">3</div>
+        <div class="nv-step-text"><h4>연 수익 기준 충족</h4><p>디지털 노마드 비자 신청 요건 달성 · 한국 재입국</p></div>
+      </div>
+      <div class="nv-step">
+        <div class="nv-step-n">4</div>
+        <div class="nv-step-text"><h4>한국 정착 & 허브 운영</h4><p>K-MediWell 지역 허브 운영자 · 후배 유학생 멘토링</p></div>
+      </div>
+      <div class="nv-step">
+        <div class="nv-step-n">5</div>
+        <div class="nv-step-text"><h4>K-힐링 글로벌 브랜드 구축</h4><p>K-팝·K-푸드에 이은 세 번째 한국 세계 문화 브랜드</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section id="kpi">
+  <div class="sec-label reveal" style="color:var(--gold-mid)">KPI — 핵심 성과 지표</div>
+  <h2 class="sec-h2 reveal" style="color:#fff">숫자로 증명하는<br>K-MediWell 성장</h2>
+  <div class="accent-bar reveal" style="background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid))"></div>
+  <div class="kpi-grid">
+    <div class="kpi-card reveal">
+      <div class="kpi-n">50<span class="kpi-unit">명</span></div>
+      <div class="kpi-label">Phase 1<br>파일럿 유학생 참여자</div>
+      <div class="kpi-phase-tag">0~6개월</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">5<span class="kpi-unit">종</span></div>
+      <div class="kpi-label">Phase 1<br>전자북·웹툰 출간 수</div>
+      <div class="kpi-phase-tag">0~6개월</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">500<span class="kpi-unit">명</span></div>
+      <div class="kpi-label">Phase 2<br>글로벌 셀러 양성 목표</div>
+      <div class="kpi-phase-tag">6~18개월</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">170<span class="kpi-unit">개</span></div>
+      <div class="kpi-label">Phase 2<br>대사관 채널 연계</div>
+      <div class="kpi-phase-tag">6~18개월</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">1,400<span class="kpi-unit">개</span></div>
+      <div class="kpi-label">Phase 3<br>글로벌 플랫폼 연결</div>
+      <div class="kpi-phase-tag">18개월+</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">70<span class="kpi-unit">개국</span></div>
+      <div class="kpi-label">Phase 3<br>글로벌 셀러 활동 국가</div>
+      <div class="kpi-phase-tag">18개월+</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">4.0<span class="kpi-unit">×</span></div>
+      <div class="kpi-label">3년 누적<br>투자 대비 회수 배율</div>
+      <div class="kpi-phase-tag">3년 목표</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-n">80<span class="kpi-unit">%</span></div>
+      <div class="kpi-label">AI 활용<br>제작비 절감율</div>
+      <div class="kpi-phase-tag">전 단계 적용</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget">
+  <div class="sec-label reveal">창업활동자금 사용계획 — 200만원</div>
+  <h2 class="sec-h2 reveal">200만원, 한 푼도 허투루 쓰지 않는다</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">지원받은 창업활동자금 200만원은 MVP 검증에 직접 기여하는 항목에만 집중 집행합니다. 유학생 파일럿 교육 운영과 AI 전자북 시제품 출간, 플랫폼 초기 구동에 필요한 최소 비용으로 최대 효과를 냅니다.</p>
+
+  <div class="budget-total reveal">
+    <div>
+      <div class="bt-amount">200만원</div>
+      <div class="bt-label">창업활동 지원금 총액</div>
+    </div>
+    <div class="bt-divider"></div>
+    <div class="bt-desc">
+      <strong>집행 원칙:</strong> 유학생 1인이 전자북 1권을 출간하고 글로벌 플랫폼에 유통되기까지의 전 과정을 실증하는 데 집중합니다. 200만원으로 <strong>3~5종의 시제품</strong>을 출간하고, <strong>50명의 파일럿 참여자</strong>를 확보하며, <strong>플랫폼 MVP</strong>를 실제 운영합니다.
+    </div>
+  </div>
+
+  <table class="budget-table reveal">
+    <thead>
+      <tr>
+        <th style="width:40px">#</th>
+        <th>항목</th>
+        <th>세부 내용</th>
+        <th>금액</th>
+        <th>비율</th>
+        <th>기대 성과</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>
+          <div class="cat-tag cat-edu">교육</div><br>
+          <strong>유학생 파일럿 교육 운영비</strong>
+        </td>
+        <td>K-문화 체험 교육 워크숍 2회 운영 · 강사 섭외비 · 교재 인쇄 · 장소 대관 · 참여 유학생 실습 재료비</td>
+        <td class="amount">600,000원</td>
+        <td class="pct">30%</td>
+        <td>파일럿 유학생 20~30명 참여 · 웹툰·전자북 소재 발굴 · 교육 커리큘럼 검증</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>
+          <div class="cat-tag cat-tech">기술</div><br>
+          <strong>AI 번역·편집 툴 구독료</strong>
+        </td>
+        <td>ChatGPT API·Claude API·DeepL Pro 3개월 구독 · AI 표지 디자인 툴 · 전자북 포맷 변환 소프트웨어 (EPUB·PDF)</td>
+        <td class="amount">300,000원</td>
+        <td class="pct">15%</td>
+        <td>AI 번역 파이프라인 구축 완료 · 6개 언어 자동 번역 시스템 검증 · 80% 비용 절감 실증</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>
+          <div class="cat-tag cat-tech">기술</div><br>
+          <strong>전자북 시제품 출간 비용</strong>
+        </td>
+        <td>Amazon KDP·Apple Books 출판 등록비 · ISBN 발급 · 전자책 메타데이터 등록 · 초기 3종 출간 작업비</td>
+        <td class="amount">200,000원</td>
+        <td class="pct">10%</td>
+        <td>글로벌 3개 이상 플랫폼 실제 유통 확인 · 첫 판매 데이터 수집 · 유학생 저자 1호 탄생</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>
+          <div class="cat-tag cat-tech">기술</div><br>
+          <strong>플랫폼 서버·도메인 운영비</strong>
+        </td>
+        <td>Supabase 유료 플랜 전환 (월 25달러×3개월) · 커스텀 도메인 등록 (kmediwell.com) · SSL 인증서</td>
+        <td class="amount">200,000원</td>
+        <td class="pct">10%</td>
+        <td>실사용자 100명 이상 동시 접속 안정적 처리 · 실시간 채팅·DB 저장 정상 작동 검증</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>
+          <div class="cat-tag cat-mkt">홍보</div><br>
+          <strong>글로컬대학 연계 홍보·미팅</strong>
+        </td>
+        <td>30개 글로컬 지정대학 담당자 이메일 발송 · 제안서 인쇄 · 협약 미팅 교통비 (2~3개 대학 직접 방문)</td>
+        <td class="amount">200,000원</td>
+        <td class="pct">10%</td>
+        <td>글로컬대학 2개 이상 MOU 체결 추진 · 대학 유학생 대상 공동 교육 프로그램 협의</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>
+          <div class="cat-tag cat-mkt">홍보</div><br>
+          <strong>SNS·콘텐츠 마케팅</strong>
+        </td>
+        <td>인스타그램·틱톡·유튜브 쇼츠 제작 (유학생 K-문화 체험 영상 3편) · 자막 번역 · 썸네일 디자인</td>
+        <td class="amount">200,000원</td>
+        <td class="pct">10%</td>
+        <td>플랫폼 초기 가입자 100명 이상 확보 · 전자북 첫 판매 10부 이상 · 브랜드 인지도 구축</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>
+          <div class="cat-tag cat-ops">운영</div><br>
+          <strong>다문화·유학생 지원사업 연계비</strong>
+        </td>
+        <td>법무부·교육부 외국인 유학생 지원사업 신청 서류 비용 · 다문화가족지원센터 네트워킹 행사 참가비 · 명함·브로셔 제작</td>
+        <td class="amount">200,000원</td>
+        <td class="pct">10%</td>
+        <td>정부 지원사업 1건 이상 연계 신청 · 다문화 네트워크 10개 기관 접촉</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>
+          <div class="cat-tag cat-ops">운영</div><br>
+          <strong>예비비 및 기타 운영비</strong>
+        </td>
+        <td>사무용품·인쇄비 · 예상치 못한 지출 대비 예비비 · 멘토링·자문 미팅 교통비</td>
+        <td class="amount">100,000원</td>
+        <td class="pct">5%</td>
+        <td>사업 운영 안정성 확보</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" style="font-size:15px;font-weight:900">합계</td>
+        <td class="amount" style="font-size:18px">2,000,000원</td>
+        <td class="pct" style="font-weight:700">100%</td>
+        <td style="font-size:13px;color:var(--jade);font-weight:700">MVP 검증 완료 · 유학생 저자 1호 탄생</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="budget-note reveal">
+    💡 <strong>자금 집행 원칙:</strong> 모든 지출은 영수증·증빙 자료를 보관하며 투명하게 관리합니다. 교육비(30%)와 기술비(35%)에 집중하여 실제 제품·서비스 검증에 우선 투자하고, 마케팅(20%)과 운영(15%)은 최소화합니다. 지원금 소진 전 자체 수익(전자책 판매 로열티)이 발생하는 구조를 목표로 합니다.
+  </div>
+</section>
+
+<!-- GLOCAL UNIVERSITY -->
+<section id="glocal-univ">
+  <div class="sec-label reveal">글로컬대학 연계 전략 — 30개 지정 대학</div>
+  <h2 class="sec-h2 reveal">정부가 선정한 30개 글로컬대학이<br>K-MediWell의 첫 번째 네트워크다</h2>
+  <div class="accent-bar reveal" style="background:linear-gradient(90deg,var(--jade-mid),var(--gold-mid))"></div>
+  <p class="sec-lead reveal">교육부가 지정한 30개 글로컬대학은 이미 "한국문화의 세계화"를 핵심 사업 목표로 설정하고 있습니다. K-MediWell은 이들의 외국인 유학생과 글로컬 사업 예산을 활용해 가장 빠르고 신뢰 있는 파트너십 네트워크를 구축합니다.</p>
+
+  <div class="univ-strategy reveal">
+    <div class="us-card">
+      <div class="us-icon">🏛</div>
+      <div class="us-title">글로컬대학 사업과의 완벽한 정합성</div>
+      <p class="us-desc">교육부 글로컬대학 30 사업의 핵심 KPI는 외국인 유학생 유치·한국문화 세계화·지역 특성화 콘텐츠 개발입니다. K-MediWell의 사업 방향과 100% 일치합니다.</p>
+      <ul class="us-list">
+        <li>글로컬대학 외국인 유학생을 K-MediWell 파일럿 참여자로 연계</li>
+        <li>대학별 지역 특성화 전통문화 콘텐츠를 전자북 소재로 개발</li>
+        <li>글로컬 사업 예산 내 K-MediWell 교육 프로그램 정식 편성 추진</li>
+        <li>대학 국제처·한국어교육원과 MOU 체결로 공신력 확보</li>
+      </ul>
+    </div>
+    <div class="us-card">
+      <div class="us-icon">📚</div>
+      <div class="us-title">유학생·다문화 교육지원사업 연계</div>
+      <p class="us-desc">법무부 외국인 유학생 지원사업, 여성가족부 다문화가족지원사업과 K-MediWell을 연계합니다. 정부 예산을 활용해 초기 교육 운영 비용을 최소화합니다.</p>
+      <ul class="us-list">
+        <li>법무부 외국인 유학생 정착 지원사업과 플랫폼 연계</li>
+        <li>다문화가족지원센터 한국문화 교육 프로그램으로 K-MediWell 채택 추진</li>
+        <li>교육부 국제화 역량 강화사업 과제 신청 (대학 파트너십 통해)</li>
+        <li>외국인 한국 정착화 지원 + K-문화 수출 두 마리 토끼 동시 실현</li>
+      </ul>
+    </div>
+    <div class="us-card">
+      <div class="us-icon">🤖</div>
+      <div class="us-title">AI 활용 전자북 제작 교육 시스템</div>
+      <p class="us-desc">유학생이 AI 도구를 활용해 K-문화 체험을 전자북으로 제작하는 12주 커리큘럼을 글로컬대학 정규 비교과 프로그램으로 편성합니다.</p>
+      <ul class="us-list">
+        <li>주 1회 2시간 · AI 글쓰기·번역·디자인 실습 중심</li>
+        <li>ChatGPT·Claude·Canva·Midjourney 활용 실습 교육</li>
+        <li>12주 후 개인 전자북 1권 완성·출간이 수료 조건</li>
+        <li>수료증 + K-MediWell 글로벌 셀러 자격 동시 부여</li>
+      </ul>
+    </div>
+    <div class="us-card">
+      <div class="us-icon">🌐</div>
+      <div class="us-title">지역 전통문화 콘텐츠 발굴·세계화</div>
+      <p class="us-desc">각 글로컬대학 소재 지역의 고유한 전통문화·치유 자원을 발굴해 유학생이 직접 체험·기록·출간합니다. 지역 소멸 위기 문화를 디지털 콘텐츠로 보존합니다.</p>
+      <ul class="us-list">
+        <li>지역 전통 지식인 (장인·한의사·농악인 등) 인터뷰 프로그램</li>
+        <li>지역 치유관광자원 (온천·산림·전통 한방 등) 체험 연계</li>
+        <li>유학생이 쓴 "외국인이 본 OO 지역 치유문화" 시리즈 출간</li>
+        <li>지자체 관광부서와 협력 → 디지털 관광 홍보 콘텐츠로 활용</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="univ-collab reveal">
+    <div class="uc-title">📍 글로컬대학 × K-MediWell 협력 프로세스</div>
+    <div class="uc-flow">
+      <div class="uc-step">
+        <div class="uc-node">🤝</div>
+        <div class="uc-label">MOU 체결<br>국제처·한국어교육원</div>
+      </div>
+      <div class="uc-step">
+        <div class="uc-node">🎓</div>
+        <div class="uc-label">유학생 교육<br>AI 전자북 12주 과정</div>
+      </div>
+      <div class="uc-step">
+        <div class="uc-node">📖</div>
+        <div class="uc-label">전자북 출간<br>지역 문화 시리즈</div>
+      </div>
+      <div class="uc-step">
+        <div class="uc-node">🌏</div>
+        <div class="uc-label">글로벌 유통<br>대사관·1,400 플랫폼</div>
+      </div>
+      <div class="uc-step">
+        <div class="uc-node">💰</div>
+        <div class="uc-label">수익 창출<br>저자·대학·플랫폼 3자</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px" class="reveal">
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:24px;text-align:center">
+      <div style="font-family:var(--display);font-size:36px;font-weight:700;color:var(--jade-mid)">30개</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:6px">교육부 지정 글로컬대학</div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:24px;text-align:center">
+      <div style="font-family:var(--display);font-size:36px;font-weight:700;color:var(--jade-mid)">2개</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:6px">Phase 1 목표 MOU 체결</div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:24px;text-align:center">
+      <div style="font-family:var(--display);font-size:36px;font-weight:700;color:var(--gold-mid)">50명</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:6px">1차 파일럿 유학생 모집</div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:24px;text-align:center">
+      <div style="font-family:var(--display);font-size:36px;font-weight:700;color:var(--gold-mid)">5종</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:6px">지역 문화 전자북 시제품</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEASIBILITY -->
+<section id="feasibility">
+  <div class="sec-label reveal">사업화 가능성 & 구체성 — Business Feasibility</div>
+  <h2 class="sec-h2 reveal">왜 지금, 왜 K-MediWell인가</h2>
+  <div class="accent-bar reveal"></div>
+  <p class="sec-lead reveal">K-MediWell은 시장 타이밍·제도적 기반·실증 데이터·파트너십 구조 네 가지 측면에서 강력한 사업화 근거를 보유합니다.</p>
+
+  <div class="feas-grid reveal">
+    <div class="feas-card">
+      <div class="feas-badge">시장 타이밍</div>
+      <div class="feas-h">지금이 최적의 진입 시점</div>
+      <p class="feas-desc">치유관광산업육성법(2026.4.9 시행), 교육부 글로컬대학 30 사업, 디지털 노마드 비자 제도화가 동시에 진행되고 있습니다. 3개 정책이 교차하는 지점에 K-MediWell이 있습니다.</p>
+      <div class="feas-proof">
+        <div class="fp-item">치유관광산업육성법 2026.4.9 시행 — 최초 전용 법률</div>
+        <div class="fp-item">글로컬대학 30 사업 — 2024~2027년 집중 지원 기간</div>
+        <div class="fp-item">전세계 K-컬처 팬 1.5억 명 — 역대 최고치 경신 중</div>
+        <div class="fp-item">AI 번역 비용 급감 — 전자북 제작비 80% 이상 절감 가능</div>
+      </div>
+    </div>
+    <div class="feas-card">
+      <div class="feas-badge">제도적 기반</div>
+      <div class="feas-h">정부 정책과 완벽히 정렬</div>
+      <p class="feas-desc">K-MediWell은 단독 사업이 아니라 다수의 정부 정책·사업과 연계되어 공공 인프라와 예산을 활용할 수 있는 구조입니다.</p>
+      <div class="feas-proof">
+        <div class="fp-item">법무부 외국인 유학생 정착 지원 — 다문화 교육 연계</div>
+        <div class="fp-item">여성가족부 다문화가족지원사업 — 한국문화 교육 프로그램</div>
+        <div class="fp-item">문화체육관광부 한국문화 세계화 사업 — 전자북 콘텐츠 지원</div>
+        <div class="fp-item">중소벤처기업부 창업지원 — 후속 펀딩 연계 가능</div>
+      </div>
+    </div>
+    <div class="feas-card">
+      <div class="feas-badge">실증 근거</div>
+      <div class="feas-h">데이터와 선례가 있다</div>
+      <p class="feas-desc">이용근 교수팀의 에너지 치유 임상 데이터(2008)와 치유관광 학술 연구가 K-MediWell 콘텐츠의 과학적 신뢰도를 뒷받침합니다.</p>
+      <div class="feas-proof">
+        <div class="fp-item">2008 랫드 임상 — 에너지 테라피 실험군 100% 생존</div>
+        <div class="fp-item">하버드 Palmer 교수 Brain Energy 이론과의 수렴</div>
+        <div class="fp-item">국립공주대 스마트의료웰니스관광 대학원 — 기관 신뢰도</div>
+        <div class="fp-item">K-MediWell 플랫폼 MVP 이미 구동 중 (GitHub Pages)</div>
+      </div>
+    </div>
+    <div class="feas-card">
+      <div class="feas-badge">경쟁 우위</div>
+      <div class="feas-h">이것은 카피할 수 없다</div>
+      <p class="feas-desc">K-MediWell의 핵심 경쟁력은 기술이 아닙니다. 유학생 네트워크 + 전통 지식인 + 치유관광 + 글로컬대학의 4자 생태계 구조 자체가 진입장벽입니다.</p>
+      <div class="feas-proof">
+        <div class="fp-item">진짜 현지화 — 유학생이 모국어로 쓴 K-문화 콘텐츠</div>
+        <div class="fp-item">치유 + 콘텐츠 + 교육 결합 — 유사 서비스 전무</div>
+        <div class="fp-item">대학 기관 파트너십 — 개인 창업자가 복제 불가능</div>
+        <div class="fp-item">170개 대사관 공식 채널 — 정부 신뢰 기반 유통망</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MVP 자금 활용 계획 -->
+  <div class="sec-label reveal" style="margin-top:20px">MVP 자금 활용 계획 — 단계별 투자 로드맵</div>
+  <h3 style="font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);margin-bottom:14px;margin-top:8px" class="reveal">200만원이 씨앗이 되어<br>사업화로 이어지는 경로</h3>
+  <div class="accent-bar reveal"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:40px" class="reveal">
+    <div style="background:var(--paper);border:1px solid var(--paper-mid);border-radius:16px;padding:28px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--jade)"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--jade);margin-bottom:12px">Step 1 · 200만원 (현재)</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px">씨앗 자금 — 검증</div>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;margin-bottom:16px">파일럿 교육 운영 · AI 전자북 3~5종 출간 · 플랫폼 안정화 · 글로컬대학 2개 MOU 추진</p>
+      <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--jade)">2,000,000원</div>
+      <div style="font-size:11px;color:var(--ink-muted)">모두의 창업 지원금</div>
+    </div>
+    <div style="background:var(--paper);border:1px solid var(--paper-mid);border-radius:16px;padding:28px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold-mid)"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Step 2 · 6개월 후</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px">초기 수익 + 후속 지원</div>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;margin-bottom:16px">전자북 첫 판매 수익 · 교육 수강료 수입 · 글로컬대학 용역 계약 · 정부 창업지원 후속 신청</p>
+      <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold)">1,000~3,000만원</div>
+      <div style="font-size:11px;color:var(--ink-muted)">예상 확보 자금</div>
+    </div>
+    <div style="background:var(--paper);border:1px solid var(--paper-mid);border-radius:16px;padding:28px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--slate)"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate);margin-bottom:12px">Step 3 · 18개월 후</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px">투자 유치 · 본격 확장</div>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;margin-bottom:16px">초기 투자자 유치 · 대사관 170개국 본격 연계 · 뉴욕·도쿄·파리 허브 오픈 · Series A 준비</p>
+      <div style="font-family:var(--display);font-size:28px;font-weight:700;color:var(--slate)">1억~5억원</div>
+      <div style="font-size:11px;color:var(--ink-muted)">투자 유치 목표</div>
+    </div>
+  </div>
+
+  <!-- Risk Table -->
+  <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:18px" class="reveal">⚖️ 리스크 분석 & 대응 전략</h3>
+  <table class="risk-table reveal">
+    <thead>
+      <tr>
+        <th>리스크</th>
+        <th>가능성</th>
+        <th>영향도</th>
+        <th>대응 전략</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>유학생 참여율 저조</td>
+        <td><span class="risk-level rl-mid">중간</span></td>
+        <td><span class="risk-level rl-high">높음</span></td>
+        <td>글로컬대학 공식 비교과 프로그램으로 편성 → 학점·수료증 인센티브 제공. 소액 참가비 지원으로 진입장벽 제거.</td>
+      </tr>
+      <tr>
+        <td>전자북 판매 부진</td>
+        <td><span class="risk-level rl-mid">중간</span></td>
+        <td><span class="risk-level rl-mid">중간</span></td>
+        <td>유학생 본국 SNS 채널 활용 사전 팬덤 구축. 대사관 채널 배포로 초기 독자 확보. 무료 샘플 챕터 공개로 전환율 제고.</td>
+      </tr>
+      <tr>
+        <td>AI 번역 품질 이슈</td>
+        <td><span class="risk-level rl-low">낮음</span></td>
+        <td><span class="risk-level rl-mid">중간</span></td>
+        <td>유학생 모국어 원어민 감수 프로세스 의무화. AI 초안 → 원어민 교수 검수 → 최종 출간 3단계 품질 관리.</td>
+      </tr>
+      <tr>
+        <td>글로컬대학 MOU 지연</td>
+        <td><span class="risk-level rl-mid">중간</span></td>
+        <td><span class="risk-level rl-low">낮음</span></td>
+        <td>국립공주대학교 자체 채널로 먼저 시작. MOU 없이도 자율 참여 모집 가능. MOU는 Phase 2 목표로 조정.</td>
+      </tr>
+      <tr>
+        <td>경쟁 플랫폼 등장</td>
+        <td><span class="risk-level rl-low">낮음</span></td>
+        <td><span class="risk-level rl-low">낮음</span></td>
+        <td>유학생 네트워크 + 전통 지식인 + 치유관광 + 대학 파트너십의 4자 생태계는 단기간 복제 불가. 선점 효과 극대화.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="sec-label reveal" style="justify-content:center;text-align:center">K-MediWell · 모두의 창업 2라운드</div>
+  <h2 class="closing-h reveal">
+    전통이 수출이 되고<br><em>치유가 산업이 되는</em> 날
+  </h2>
+  <p class="closing-sub reveal">
+    K-MediWell은 단순한 플랫폼이 아닙니다.<br>
+    30만 유학생을 글로벌 셀러로, 한국 전통 지식을 세계 콘텐츠로,<br>
+    치유관광을 K-힐링 브랜드로 전환하는 <strong>새로운 한국 경제의 설계도</strong>입니다.
+  </p>
+  <div class="closing-tags reveal">
+    <span class="ctag">#K치유관광산업육성법</span>
+    <span class="ctag">#AI전자북플랫폼</span>
+    <span class="ctag">#유학생글로벌셀러</span>
+    <span class="ctag">#글로컬대학30</span>
+    <span class="ctag">#다문화교육지원</span>
+    <span class="ctag">#디지털노마드비자</span>
+    <span class="ctag">#전통문화수출</span>
+    <span class="ctag">#K힐링세계표준</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong>K-MediWell</strong> · 국립공주대학교 스마트의료웰니스관광 대학원<br>
+    이용근 교수팀 · touryklee@naver.com
+  </div>
+  <div style="text-align:right">
+    MVP 기획서 v2.0 · 2026<br>
+    모두의 창업 1라운드 선정작 · 2라운드 제출용
+  </div>
+</footer>
+
+<script>
+// Smooth scroll
+function scrollTo(id){
+  document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+// Nav active state
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nl');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-120)cur=s.id;
+  });
+  navLinks.forEach(nl=>{
+    nl.classList.toggle('active',nl.getAttribute('onclick')?.includes(cur));
+  });
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*60);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+reveals.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
